@@ -7,39 +7,38 @@ import './App.css';
 
 const App = () => {
   const [planets, setPlanets] = useState([]);
-  const [nextPage, setNextPage] = useState(null);
-  const [prevPage, setPrevPage] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
-    fetchPlanets('https://swapi.dev/api/planets/?format=json');
-  }, []);
+    fetchPlanets(`https://swapi.dev/api/planets/?page=${currentPage}&format=json`);
+  }, [currentPage]);
 
   const fetchPlanets = async (url) => {
     try {
       const response = await axios.get(url);
-      setPlanets((prevPlanets) => [...prevPlanets, ...response.data.results]);
-      setNextPage(response.data.next);
-      setPrevPage(response.data.previous);
+      setPlanets(response.data.results);
+      setTotalPages(Math.ceil(response.data.count / 10));
     } catch (error) {
-      console.error('Error fetching planets:', error);
+      console.error('Error fetching planets Apis:', error);
     } finally {
       setLoading(false);
     }
   };
 
   const handleLoadMore = () => {
-    if (nextPage) {
+    if (currentPage < totalPages) {
       setLoading(true);
-      fetchPlanets(nextPage);
+      setCurrentPage((prevPage) => prevPage + 1);
     }
   };
 
   const handleLoadPrev = () => {
-    if (prevPage) {
+    if (currentPage > 1) {
       setLoading(true);
-      fetchPlanets(prevPage);
+      setCurrentPage((prevPage) => prevPage - 1);
     }
   };
 
@@ -48,14 +47,14 @@ const App = () => {
       <h1 className='planets-h1'>Planets Directory</h1>
       <div className="planets-container">
         {loading ? (
-          Array.from({ length: 5 }).map((_, index) => <Skeleton key={index} />)
+          Array.from({ length: 12 }).map((_, index) => <Skeleton key={index} />)
         ) : (
           planets.map((planet) => <PlanetCard key={planet.name} planet={planet} />)
         )}
       </div>
       <div className="pagination">
-        {prevPage && <button onClick={handleLoadPrev}>Previous</button>}
-        {nextPage && !prevPage && <button onClick={handleLoadMore}>Next</button>}
+        {currentPage > 1 && <button onClick={handleLoadPrev}>Previous</button>}
+        {currentPage < totalPages && <button onClick={handleLoadMore}>Next</button>}
       </div>
       {loading && <Loading />}
     </div>
