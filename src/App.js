@@ -1,8 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PlanetCard from './components/PlanetCard';
 import Skeleton from './components/Skeleton';
+import Loading from './components/Loading';
 import './App.css';
 
 const App = () => {
@@ -31,19 +31,21 @@ const App = () => {
 
   const handleLoadMore = () => {
     if (nextPage) {
+      setLoading(true);
       fetchPlanets(nextPage);
     }
   };
 
   const handleLoadPrev = () => {
     if (prevPage) {
+      setLoading(true);
       fetchPlanets(prevPage);
     }
   };
 
   return (
     <div className="app">
-      <h1>Planets Directory</h1>
+      <h1 className='planets-h1'>Planets Directory</h1>
       <div className="planets-container">
         {loading ? (
           Array.from({ length: 5 }).map((_, index) => <Skeleton key={index} />)
@@ -55,6 +57,7 @@ const App = () => {
         {prevPage && <button onClick={handleLoadPrev}>Previous</button>}
         {nextPage && !prevPage && <button onClick={handleLoadMore}>Next</button>}
       </div>
+      {loading && <Loading />}
     </div>
   );
 };

@@ -1,13 +1,13 @@
 body {
   margin: 0;
-  background: linear-gradient(to bottom, #4b6cb7, #182848);
+  padding: 0;
+  background: linear-gradient(to bottom, #040f29, #040f29);
   font-family: 'Arial', sans-serif;
-  color: #fff; 
+  color: #ffffff; 
 }
 
 .app {
   text-align: center;
-  padding: 20px;
 }
 
 .planets-container {
@@ -16,36 +16,40 @@ body {
   justify-content: space-around;
 }
 
+.planets-h1 {
+  color: white;
+}
+
 .planet-card {
-  width: 400px; 
-  height: 250px; 
+  width: 400px;
+  height: 250px;
   border: 1px solid #ccc;
   padding: 10px;
   margin: 10px;
   border-radius: 10px;
   overflow: auto;
   transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
-  background-color: #2c3e50; 
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.3); 
+  background-color: #2c3e50;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 
   /* Hover effect */
   &:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6); 
-    background-color: #34495e; 
-    color: #ecf0f1; 
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+    background-color: #34495e;
+    color: #ecf0f1;
   }
 }
 
 .button {
-  padding: 11px  16px ;
+  padding: 11px 16px;
   background-color: #182848;
   color: white;
   border-radius: 10px;
   font-weight: 800;
   margin: 4px;
   cursor: pointer;
-  transition: transform 0.3s ease; 
+  transition: transform 0.3s ease;
 }
 
 .button:hover {
@@ -53,18 +57,18 @@ body {
 }
 
 .residents-btn {
-  background-color: #4caf50; 
-  color: white; 
-  padding: 10px 15px; 
-  font-size: 16px; 
-  border: none; 
-  border-radius: 4px; 
-  cursor: pointer; 
-  transition: background-color 0.3s ease; 
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 
   /* Hover effect */
   &:hover {
-    background-color: #45a049; 
+    background-color: #45a049;
   }
 }
 
@@ -95,7 +99,7 @@ body {
   transform: translateX(-50%);
   display: flex;
   justify-content: space-between;
-  width: 90px;
+  width: 120px; 
   background-color: #3498db;
   padding: 10px;
   border-radius: 5px;
@@ -106,8 +110,7 @@ body {
   font-size: 16px;
   background-color: #2c8ed3;
   color: #fff;
-  width: 100%;
-  margin: auto;
+  width: 98%; 
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -117,6 +120,7 @@ body {
 .pagination button:hover {
   background-color: #2980b9;
 }
+
 .list {
   display: flex;
   justify-content: space-between;
@@ -128,6 +132,7 @@ body {
 .section-title {
   margin-top: 10px;
 }
+
 .card {
   width: calc(33% - 10px);
   margin: 20px 0;
