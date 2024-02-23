@@ -22,7 +22,7 @@ const App = () => {
       setPlanets(response.data.results);
       setTotalPages(Math.ceil(response.data.count / 10));
     } catch (error) {
-      console.error('Error fetching planets Api:', error);
+      console.error('Error fetching planets Apis:', error);
     } finally {
       setLoading(false);
     }
